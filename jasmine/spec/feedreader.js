@@ -59,6 +59,7 @@ $(function() {
          * hiding/showing of the menu element.
          */
         it('is hidden by default.', function() {
+            // Check if the '.menu-hidden' exists. If it exists then menu is hidden by default.
             expect($('body').hasClass('menu-hidden')).toBe(true);
         });
 
@@ -68,11 +69,11 @@ $(function() {
          * clicked and does it hide when clicked again.
          */
         it('changes visibility when the menu icon is clicked.', function() {
-            var spyEvent = spyOn($('.menu-icon-link'), 'click');
-
+            // Trigger a click event and check whether the menu is displayed.
             $('.menu-icon-link').trigger('click');
             expect($('body').hasClass('menu-hidden')).toBe(false);
 
+            // Trigger a click event and check whether the menu is hidden.
             $('.menu-icon-link').trigger('click');
             expect($('body').hasClass('menu-hidden')).toBe(true);
         });
@@ -87,10 +88,12 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
         beforeEach(function(done) {
+            // Load an entry.
             loadFeed(0, done);
         });
 
         it('have at least one single entry', function(done) {
+            // Check if there's at least one entree.
             expect($('.feed .entry').length).not.toBe(0);
             done();
         });
@@ -101,13 +104,26 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-        beforeEach(function(done) {
-            loadFeed(0, done);
-            loadFeed(1, done);
+        beforeEach(function(done){
+            // Empty the feed to ensure that the spec is protected from external influences from previous specs
+            $('.feed').empty();
+
+            // Load the first entry.
+            loadFeed(0, function() {
+                firstEntry = $('.feed').find("h2").text();
+            });
+
+            // Load the second entry.
+            loadFeed(1, function() {
+                secondEntry = $('.feed').find("h2").text();
+                done();
+            });
         });
 
-        it('changes the content', function() {
-
+        it('actually changes the content', function(done){
+            // If the entries don't match, then the content actually changed.
+            expect(firstEntry).not.toEqual(secondEntry);
+            done();
         });
     });
 }());
