@@ -92,10 +92,9 @@ $(function() {
             loadFeed(0, done);
         });
 
-        it('have at least one single entry', function(done) {
+        it('have at least one single entry', function() {
             // Check if there's at least one entree.
             expect($('.feed .entry').length).not.toBe(0);
-            done();
         });
     });
     /* TODO: Write a new test suite named "New Feed Selection"*/
@@ -104,26 +103,21 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        var firstEntry, secondEntry;
         beforeEach(function(done){
-            // Empty the feed to ensure that the spec is protected from external influences from previous specs
-            $('.feed').empty();
-
-            // Load the first entry.
+            // Load the entries.
             loadFeed(0, function() {
                 firstEntry = $('.feed').find("h2").text();
-            });
-
-            // Load the second entry.
-            loadFeed(1, function() {
-                secondEntry = $('.feed').find("h2").text();
-                done();
+                loadFeed(1, function() {
+                    secondEntry = $('.feed').find("h2").text();
+                    done();
+                });
             });
         });
 
-        it('actually changes the content', function(done){
+        it('actually changes the content', function(){
             // If the entries don't match, then the content actually changed.
             expect(firstEntry).not.toEqual(secondEntry);
-            done();
         });
     });
 }());
