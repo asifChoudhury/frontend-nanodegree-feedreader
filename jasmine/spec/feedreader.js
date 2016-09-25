@@ -103,7 +103,9 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        // Entry variables
         var firstEntry, secondEntry;
+
         beforeEach(function(done){
             // Load the entries.
             loadFeed(0, function() {
