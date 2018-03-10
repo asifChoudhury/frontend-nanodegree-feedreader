@@ -5,7 +5,7 @@ This project is part of **Udacity Front-End Nanodegree**. It is a single page ap
 
 #### Installation Instructions
 * Clone the github repo https://github.com/asifChoudhury/frontend-nanodegree-feedreader.git.
-* To Run the application successfully, just load the index.html file.
+* [Live project](https://asifchoudhury.github.io/frontend-nanodegree-feedreader/).
 
 #### Test Description
 1. Check whether ```allFeeds``` variable has been defined and that it is not empty.
