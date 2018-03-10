@@ -3,8 +3,6 @@
 
 This project is part of **Udacity Front-End Nanodegree**. It is a single page application featuring a set of tests designed to test various aspects of the application.
 
-#### Installation Instructions
-* Clone the github repo https://github.com/asifChoudhury/frontend-nanodegree-feedreader.git.
 * [Live project](https://asifchoudhury.github.io/frontend-nanodegree-feedreader/).
 
 #### Test Description
